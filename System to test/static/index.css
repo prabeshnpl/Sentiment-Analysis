@@ -1,0 +1,214 @@
+:root {
+    --bg-main: #f4f7fb;
+    --card-bg: #ffffff;
+    --primary: #368c2e;
+    --primary-gradient: linear-gradient(135deg, #368c2e, #bff0ba);
+    --text-main: #154d02;
+    --text-sub: #64748b;
+    --border: #e2e8f0;
+    --neg: #f87171;
+    --neu: #94a3b8;
+    --pos: #4ade80;
+}
+
+* { 
+    box-sizing: border-box; 
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1100px;
+    min-height: 600px;
+    background: var(--card-bg);
+    border-radius: 32px;
+    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.1);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* --- Left Side: Input --- */
+.input-side {
+    flex: 1;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    letter-spacing: -0.04em;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: var(--text-sub);
+    margin: 8px 0 40px;
+    font-size: 0.95rem;
+}
+
+form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+textarea {
+    flex: 1;
+    width: 100%;
+    padding: 24px;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    font-size: 1.1rem;
+    resize: none;
+    outline: none;
+    transition: all 0.2s ease;
+    background: #fcfdfe;
+}
+
+textarea:focus {
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 5px rgba(79, 123, 255, 0.08);
+}
+
+button {
+    padding: 16px;
+    border: none;
+    border-radius: 16px;
+    background: var(--primary-gradient);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+/* --- Right Side: Insights --- */
+.insight-side {
+    flex: 1.2;
+    background: #f8fafc;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+}
+
+.empty-state {
+    margin: auto;
+    text-align: center;
+    color: var(--text-sub);
+}
+
+.empty-state svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    opacity: 0.3;
+}
+
+.results-header {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-sub);
+    margin-bottom: 24px;
+    display: block;
+}
+
+.model-card {
+    background: white;
+    padding: 24px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+}
+
+.model-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.model-name { 
+    font-weight: 700; 
+    font-size: 0.95rem; 
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.badge-positive { background: #dcfce7; color: #166534; }
+.badge-negative { background: #fee2e2; color: #991b1b; }
+.badge-neutral { background: #f1f5f9; color: #475569; }
+
+.stat-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 40px;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.stat-label { 
+    font-size: 0.85rem; 
+    color: var(--text-sub); 
+}
+
+.bar-track {
+    height: 6px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1s ease-out;
+    width: var(--width);
+}
+
+/* Color logic for dynamic bars */
+.pos-fill { background: var(--pos); }
+.neu-fill { background: var(--neu); }
+.neg-fill { background: var(--neg); }
+
+.stat-val {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .container { flex-direction: column; }
+    .input-side { border-right: none; border-bottom: 1px solid var(--border); }
+}
