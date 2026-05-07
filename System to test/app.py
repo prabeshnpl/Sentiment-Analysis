@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import joblib
-from utils.modules.preprocessing_v2 import clean_texts
+from utils.modules.preprocessing_v1 import clean_and_lemmatize
 
 NB_model = joblib.load('utils/models/v5/sentiment_detection_nb_model_v5.pkl')
 SVM_model = joblib.load('utils/models/v5/sentiment_detection_svm_model_v5.pkl')
@@ -21,7 +21,7 @@ def index():
         input_text = request.form.get('input_text', '')
 
         # Clean the sentence
-        processed_text = clean_texts(input_text)
+        processed_text = clean_and_lemmatize(input_text)
 
         # Transform into digits
         X = tf_idf.transform([processed_text])
